@@ -1,0 +1,36 @@
+type Assign {
+  id: ID!
+  punk_id: String!
+  user_id: String!
+  timeStamp: BigInt!
+}
+
+type Punk {
+  id: ID!
+  birthTime: BigInt!
+  creator_id: String!
+  owner_id: String!
+}
+
+type User {
+  id: ID!
+  ownedPunks: [Punk!]! @derivedFrom(field: "owner_id")
+  madePunks: [Punk!]! @derivedFrom(field: "creator_id")
+}
+
+type PunkBought {
+  id: ID!
+  punk_id: String!
+  buyer_id: String!
+  seller_id: String!
+  price: BigInt!
+  timeStamp: BigInt!
+}
+
+type PunkTransfer {
+  id: ID!
+  from_id: String!
+  to_id: String!
+  punk_id: String!
+  timeStamp: BigInt!
+}

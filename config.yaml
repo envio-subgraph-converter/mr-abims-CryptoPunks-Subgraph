@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=./node_modules/envio/evm.schema.json
+name: cryptopunks-indexer
+description: CryptoPunks Indexer
+
+field_selection:
+  transaction_fields:
+    - hash
+
+contracts:
+  - name: CryptoPunks
+    abi_file_path: ./abis/CryptoPunks.json
+    events:
+      - event: "Assign(address indexed to, uint256 punkIndex)"
+      - event: "PunkTransfer(address indexed from, address indexed to, uint256 punkIndex)"
+      - event: "PunkBought(uint256 indexed punkIndex, uint256 value, address indexed fromAddress, address indexed toAddress)"
+
+chains:
+  - id: 1 # Ethereum Mainnet
+    start_block: 12793976
+    contracts:
+      - name: CryptoPunks
+        address: "0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB"
